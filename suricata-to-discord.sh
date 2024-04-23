@@ -18,7 +18,7 @@ do
         DEST_IP=$(echo $LINE | jq -r '.dest_ip')
         TIMESTAMP=$(echo $LINE | jq -r '.timestamp')
         #Prepare the JSON content to send to Discord
-        JSON_DATA=$(jq -n --arg content "Suricata Alert: $MESSAGE | Category: $CATEGORY | Source IP: $SRC_IP | Destination IP: $DEST_IP | Data/Hora: $TIMESTAMP" '{content: $content}')
+        JSON_DATA=$(jq -n --arg content "Suricata Alert: $MESSAGE | Category: $CATEGORY | Source IP: $SRC_IP | Destination IP: $DEST_IP | Date: $TIMESTAMP" '{content: $content}')
         #Send the alert to Discord via webhook
         curl -X POST -H "Content-Type: application/json" -d "$JSON_DATA" $WEBHOOK_DISCORD
     fi
